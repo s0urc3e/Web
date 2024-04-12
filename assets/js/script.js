@@ -62,7 +62,7 @@ function startMainTyping() {
 }
 
 function switchScreen() {
-  document.title = 'Creatinq on top W';
+  document.title = 'Source on top W';
 
   $('.intro').fadeOut(1000, function () {
     $('.bg-image').fadeIn(1000);
