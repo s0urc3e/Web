@@ -7,13 +7,13 @@ function openSocial(type) {
 
   switch (type) {
     case 'discord':
-      url = 'https://discord.com/users/963412628967936061';
+      url = 'https://discord.gg/cS4NuscNs5';
       break;
     case 'github':
-      url = 'https://github.com/Creatinq';
+      url = 'https://github.com/s0urc3e';
       break;
     case 'twitter':
-      url = 'https://twitter.com/Creatinqqq';
+      url = 'https://twitter.com/none';
       break;
   }
 
@@ -37,7 +37,7 @@ function startIntroTyping() {
 function typerStartTyping(typer) {
   typer.reset();
 
-  let text = ['Java Developer', 'Pepsi W', 'Cats are cool', 'Certified skidder', 'bro why are you still here'];
+  let text = ['Lua Developer', 'FiveM Developer', 'New HTML Developer', 'cat is cool'];
 
   text.forEach(function (language, index) {
     typer.move(null);
