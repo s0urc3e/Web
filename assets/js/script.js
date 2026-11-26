@@ -1,24 +1,6 @@
 const mobile = 'ontouchstart' in document.documentElement;
 let switchAllowed = false;
 
-function openSocial(type) {
-  let url = 'about:blank';
-
-  switch (type) {
-    case 'discord':
-      url = 'https://discord.com/users/991075367999655996';
-      break;
-    case 'github':
-      url = 'https://github.com/s0urc3e';
-      break;
-    case 'twitter':
-      url = 'https://twitter.com/none';
-      break;
-  }
-
-  window.open(url, '_blank', 'noopener,noreferrer');
-}
-
 function startIntroTyping() {
   new TypeIt('#intro-text', {
     speed: 50,
@@ -65,6 +47,21 @@ function startMainTyping() {
   typerStartTyping(typer);
 }
 
+function playQuietAudio() {
+  // 0.25 = 25% volume (half of 0.5) so it's noticeably quieter
+  const targetVolume = 0.25;
+
+  ['background', 'rain'].forEach((audioName) => {
+    const audioElement = new Audio(`assets/audio/${audioName}.mp3`);
+    audioElement.volume = targetVolume;
+    audioElement.loop = true;
+
+    audioElement.play().catch((err) => {
+      console.warn(`Audio playback failed for ${audioName}:`, err);
+    });
+  });
+}
+
 function switchScreen() {
   document.title = 'source';
 
@@ -78,16 +75,7 @@ function switchScreen() {
       });
   });
 
-  ['background', 'rain'].forEach((audioName) => {
-    const fullPath = `assets/audio/${audioName}.mp3`;
-    const audioElement = new Audio(fullPath);
-    
-    audioElement.volume = 0.5;
-    audioElement.loop = true;
-    audioElement.play().catch((err) => {
-      console.warn(`Audio playback failed for ${audioName}:`, err);
-    });
-  });
+  playQuietAudio();
 }
 
 document.addEventListener('keydown', () => {
