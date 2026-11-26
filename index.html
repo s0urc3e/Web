@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <!-- charset + mobile layout -->
   <meta charset="utf-8" />
@@ -13,7 +14,7 @@
 
   <!-- title + favicon -->
   <title>Source | welcome</title>
-  <link rel="shortcut icon" type="image/jpg" href="assets/img/favicon.png"/>
+  <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
 
   <!-- assets -->
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -24,32 +25,43 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"
   ></script>
-
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js" defer></script>
 </head>
 
 <body>
+  <!-- Centered Intro Screen -->
   <div class="intro">
     <p id="intro-text"></p>
   </div>
 
+  <!-- Background with Vignette Overlay -->
   <div class="bg-image" style="display: none"></div>
+  <div class="bg-overlay" style="display: none"></div>
 
-  <div class="main" style="display: none">
+  <!-- Main Card Container -->
+  <main class="main" style="display: none">
     <div class="box">
       <div class="header">
-        <p class="maintext">Source</p>
-        <span class="subtext"
-          ><p id="subtext"></p>
-          </span
-        >
+        <h1 class="maintext">Source</h1>
+        <div class="subtext-wrapper">
+          <span id="subtext" class="subtext"></span>
+        </div>
       </div>
 
+      <div class="divider"></div>
+
       <div class="footer">
-        <img src="assets/img/discord-512.png" class="social-logo" onclick="openSocial('discord')"></img>
-        <img src="assets/img/github-512.png" class="social-logo" onclick="openSocial('github')"></img>
-        <img src="assets/img/twitter-512.png" class="social-logo" onclick="openSocial('twitter')"></img>
+        <button class="social-btn" onclick="openSocial('discord')" aria-label="Discord">
+          <img src="assets/img/discord-512.png" alt="Discord" class="social-logo" />
+        </button>
+        <button class="social-btn" onclick="openSocial('github')" aria-label="GitHub">
+          <img src="assets/img/github-512.png" alt="GitHub" class="social-logo" />
+        </button>
+        <button class="social-btn" onclick="openSocial('twitter')" aria-label="Twitter">
+          <img src="assets/img/twitter-512.png" alt="Twitter" class="social-logo" />
+        </button>
       </div>
     </div>
-  </div>
+  </main>
 </body>
+</html>
