@@ -1,5 +1,4 @@
-let mobile = 'ontouchstart' in document.documentElement;
-
+const mobile = 'ontouchstart' in document.documentElement;
 let switchAllowed = false;
 
 function openSocial(type) {
@@ -17,7 +16,7 @@ function openSocial(type) {
       break;
   }
 
-  window.open(url);
+  window.open(url, '_blank', 'noopener,noreferrer');
 }
 
 function startIntroTyping() {
@@ -29,7 +28,7 @@ function startIntroTyping() {
     .type(`${mobile ? 'tap' : 'press any key'} to enter.`)
     .go();
 
-  setTimeout(function () {
+  setTimeout(() => {
     switchAllowed = true;
   }, 2500);
 }
@@ -37,21 +36,26 @@ function startIntroTyping() {
 function typerStartTyping(typer) {
   typer.reset();
 
-  let text = ['Lua Developer', 'FiveM Developer', 'HTML Developer', 'Roblox Developer', 'Proud Juice WRLD Glazer'];
+  const text = [
+    'Lua Developer',
+    'FiveM Developer',
+    'HTML Developer',
+    'Roblox Developer',
+    'Proud Juice WRLD Glazer',
+  ];
 
-  text.forEach(function (language, index) {
+  text.forEach((role) => {
     typer.move(null);
-    typer.type(language, { delay: 1000 });
-    typer.pause(1000);
-
-    typer.delete(language.length, { delay: 1000 });
+    typer.type(role, { delay: 1000 });
+    typer.pause(1200);
+    typer.delete(role.length, { delay: 800 });
   });
 
   typer.go();
 }
 
 function startMainTyping() {
-  let typer = new TypeIt('#subtext', {
+  const typer = new TypeIt('#subtext', {
     speed: 50,
     afterComplete: async () => {
       typerStartTyping(typer);
@@ -64,43 +68,42 @@ function startMainTyping() {
 function switchScreen() {
   document.title = 'source';
 
-  $('.intro').fadeOut(1000, function () {
-    $('.bg-image').fadeIn(1000);
-    $('.main').fadeIn(1000, function () {
-      startMainTyping();
-    });
+  $('.intro').fadeOut(800, function () {
+    $('.bg-image, .bg-overlay').fadeIn(1000);
+    $('.main')
+      .css('display', 'flex')
+      .hide()
+      .fadeIn(1000, function () {
+        startMainTyping();
+      });
   });
 
-  ['background', 'rain'].forEach(function (audioName) {
-    let fullPath = `assets/audio/${audioName}.mp3`;
-
-    let audioElement = document.createElement('audio');
-    audioElement.setAttribute('src', fullPath);
-    audioElement.style.display = 'none';
-
-    audioElement.addEventListener('ended', function () {
-      this.currentTime = 0;
-      this.play();
+  ['background', 'rain'].forEach((audioName) => {
+    const fullPath = `assets/audio/${audioName}.mp3`;
+    const audioElement = new Audio(fullPath);
+    
+    audioElement.volume = 0.5;
+    audioElement.loop = true;
+    audioElement.play().catch((err) => {
+      console.warn(`Audio playback failed for ${audioName}:`, err);
     });
-
-    audioElement.play();
   });
 }
 
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', () => {
   if (switchAllowed) {
     switchAllowed = false;
     switchScreen();
   }
 });
 
-document.addEventListener('touchstart', function (e) {
+document.addEventListener('touchstart', () => {
   if (switchAllowed && mobile) {
     switchAllowed = false;
     switchScreen();
   }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   startIntroTyping();
 });
