@@ -7,7 +7,7 @@ function openSocial(type) {
 
   switch (type) {
     case 'discord':
-      url = 'https://discord.gg/cS4NuscNs5';
+      url = 'https://discord.com/users/991075367999655996';
       break;
     case 'github':
       url = 'https://github.com/s0urc3e';
@@ -37,7 +37,7 @@ function startIntroTyping() {
 function typerStartTyping(typer) {
   typer.reset();
 
-  let text = ['Lua Developer', 'FiveM Developer', 'New HTML Developer', 'cat is cool'];
+  let text = ['Lua Developer', 'FiveM Developer', 'HTML Developer', 'Roblox Developer', 'Proud Juice WRLD Glazer'];
 
   text.forEach(function (language, index) {
     typer.move(null);
